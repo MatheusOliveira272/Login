@@ -6,7 +6,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>EducAtiv <ui:insert name="titulo" /></title>
+        <title>Login <ui:insert name="titulo" /></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <!-- coloco o meu css aqui  ex:  <link rel="stylesheet" href="url"/>-->
 
@@ -16,9 +16,6 @@
             <h:form>
                 <p:menubar>
                     <p:menuitem value="Início" icon="pi pifw pi-home" outcome="/pages/cliente/inicio_cliente" />
-                    <p:menuitem value="Depósito" icon="pi pi-wallet" outcome="/pages/cliente/deposito"/>
-                    <p:menuitem value="Transferencia" icon="pi pi-arrow-circle-right" outcome="/pages/cliente/transferencia"/>
-                    <p:menuitem value="Empréstimos" icon="pi pi-dollar" outcome="/pages/cliente/emprestimo"/>
                     <p:menuitem value="Quit" icon="pi pifw pi-power-off" actionListener="#{beanCliente.logout()}" />
                 </p:menubar>
             </h:form>
@@ -26,17 +23,30 @@
         <div>
             <div >
                 <p:panel >
-                   
-                    
-                    <p:staticMessage severity="info"  summary="Bem vindo, #{beanIndex.cliente.nome}"  detail="---> Saldo Conta Poupanca #{beanIndex.contaPoupanca.saldo} - - - Saldo Conta Corrente: #{beanIndex.contaCorrente.saldo} - - -  Limite: #{beanIndex.contaCorrente.limite}"  style="width: 100%">
-                    
-                    
-                    </p:staticMessage>
-                    <!--<p:staticMessage severity="info" summary="Saldo Conta Poupanca #{beanIndex.contaPoupanca.saldo} - - - Saldo Conta Corrente: #{beanIndex.contaCorrente.saldo} - - -  Limite: #{beanIndex.contaCorrente.limite}" style="margin-left: 1%" />-->
-                  
+
+
+                    <p:staticMessage severity="info"  summary="Bem vindo, #{beanIndex.cliente.nome}"   style="width: 100%"/>
+
+                    <p:card style="width: 25rem; margin-bottom: 10px; margin-top: 20px; margin-left: 400px">
+                        <f:facet name="title">
+                           Usuário Logado
+                        </f:facet>
+
+                        <h:outputText value=" Nome: #{beanIndex.cliente.nome}"/>
+                        <br/>
+                        <h:outputText value=" Email: #{beanIndex.cliente.email}"/>
+                        <br/>
+                        <h:outputText value=" Cpf: #{beanIndex.cliente.cpf}"/>
+
+                    </p:card>
+
+
+
+
+
                 </p:panel>
-                
-                
+
+
             </div>
             <ui:insert name="conteudo"/> <!-- Local onde coloco o conteúdo -->
         </div>

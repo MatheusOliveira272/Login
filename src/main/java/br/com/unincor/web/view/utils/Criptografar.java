@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package br.com.unincor.web.view.utils;
 
 import java.security.MessageDigest;
@@ -9,10 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Luiz
- */
+
 public class Criptografar {
     public static String encryp( String valor){
         try {

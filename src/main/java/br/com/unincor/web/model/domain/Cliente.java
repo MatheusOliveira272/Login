@@ -4,15 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -37,16 +30,5 @@ public class Cliente implements Serializable{
     private String senha;
     private Boolean enable;
     
-    @OneToMany(mappedBy = "cliente")
-    private Set<Conta> contas = new HashSet<>();
-    
-    
-    @ManyToMany
-    @JoinTable
-            (
-                    name = "clientes_enderecos",
-                    joinColumns = @JoinColumn(name = "cliente_id"),
-                    inverseJoinColumns = @JoinColumn(name = "endereco_id")
-            )
-    private Set<Endereco> enderecos = new HashSet<>();
+   
 }

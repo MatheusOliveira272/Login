@@ -1,9 +1,7 @@
 package br.com.unincor.web.controller;
 
 import br.com.unincor.web.model.dao.ClienteDao;
-import br.com.unincor.web.model.dao.ContaDao;
 import br.com.unincor.web.model.domain.Cliente;
-import br.com.unincor.web.model.domain.Conta;
 import br.com.unincor.web.view.utils.Criptografar;
 import br.com.unincor.web.view.utils.Mensagens;
 import java.io.IOException;
@@ -33,20 +31,16 @@ public class BeanCliente extends AbstractBean<Cliente> {
     private String senhaLogin;
     private String emailLogin;
     private String confirmarSenha;
-    private List<Conta> contas;
     private Cliente clienteTemplate;
 
     public BeanCliente() {
         super(new ClienteDao());
     }
 
-//    @Override
-//    void init() {
-//        this.buscar();
-//    }
+
     @PostConstruct
     public void init() {
-        //this.cliente = new Cliente();
+        this.cliente = new Cliente();
         buscar();
     }
 
@@ -74,12 +68,7 @@ public class BeanCliente extends AbstractBean<Cliente> {
         new ClienteDao().save(cliente);
         buscar();
 
-    }
-    
-    
-    
-    
-    
+    }    
 
     public void salvar() {
         if (!cliente.getSenha().equals(confirmarSenha)) {
@@ -94,12 +83,13 @@ public class BeanCliente extends AbstractBean<Cliente> {
         cliente = new Cliente();
         buscar();
         cancelar();
-        //PrimeFaces.current().executeScript("PF('dlg3').hide()");//fechar o dialog 
+        PrimeFaces.current().executeScript("PF('dlg3').hide()");//fechar o dialog 
+     
     }
 
     public void verificaSenha() {
         var clienteLogado = new ClienteDao().buscarClientePorLogin(emailLogin);
-        if (!clienteLogado.getSenha().equals(Criptografar.encryp(senhaLogin))) {
+        if (clienteLogado == null || !clienteLogado.getSenha().equals(Criptografar.encryp(senhaLogin))) {
             Mensagens.erro(FacesContext.getCurrentInstance(), "Login e/ou senha incorretos!");
             return;
         }
@@ -136,8 +126,6 @@ public class BeanCliente extends AbstractBean<Cliente> {
         }
     }
 
-    public void buscaContaPorCliente(Cliente cliente) {
-        this.contas = new ContaDao().buscaContaCliente(cliente);
-    }
+   
 
 }

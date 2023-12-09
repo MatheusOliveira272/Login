@@ -4,16 +4,7 @@
  */
 package br.com.unincor.web.core;
 
-
-import br.com.unincor.web.model.domain.Agencia;
 import br.com.unincor.web.model.domain.Cliente;
-import br.com.unincor.web.model.domain.Conta;
-import br.com.unincor.web.model.domain.ContaCorrente;
-import br.com.unincor.web.model.domain.ContaPoupanca;
-import br.com.unincor.web.model.domain.Emprestimo;
-import br.com.unincor.web.model.domain.Endereco;
-import br.com.unincor.web.model.domain.Gerente;
-import br.com.unincor.web.model.domain.Transferencia;
 import jakarta.persistence.EntityManager;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,15 +27,7 @@ public class HibernateManager {
                     .configure("hibernate.cfg.xml").build();
             //se tiver mais classer só colocar .adde ir adicionadno
             Metadata md = new MetadataSources(ssr)
-                    .addAnnotatedClass(Agencia.class)
                     .addAnnotatedClass(Cliente.class)
-                    .addAnnotatedClass(Conta.class)
-                    .addAnnotatedClass(ContaCorrente.class)
-                    .addAnnotatedClass(ContaPoupanca.class)
-                    .addAnnotatedClass(Emprestimo.class)
-                    .addAnnotatedClass(Endereco.class)
-                    .addAnnotatedClass(Gerente.class)
-                    .addAnnotatedClass(Transferencia.class)
                     .getMetadataBuilder().build();
             SessionFactory sessionFactory = md.getSessionFactoryBuilder().build();
             session = sessionFactory.getCurrentSession();
